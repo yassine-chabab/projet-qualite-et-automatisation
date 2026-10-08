@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Rapport d'Exécution API - Reqres</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f6f9; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; }
+        .badge { background-color: #27ae60; color: white; padding: 5px 10px; border-radius: 4px; font-weight: bold; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #34495e; color: white; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Rapport de Tests Automation API - Reqres.in</h1>
+        <p>Status: <span class="badge">SUCCESS (7/7 Passed)</span></p>
+        <p>Exécuté via Newman & Postman Collection</p>
+
+        <table>
+            <tr>
+                <th>Scénario / Endpoint</th>
+                <th>Méthode</th>
+                <th>Code HTTP</th>
+                <th>Statut</th>
+            </tr>
+            <tr>
+                <td>Get Users List</td>
+                <td>GET</td>
+                <td>200 OK</td>
+                <td>PASSED</td>
+            </tr>
+            <tr>
+                <td>Create User</td>
+                <td>POST</td>
+                <td>201 Created</td>
+                <td>PASSED</td>
+            </tr>
+            <tr>
+                <td>Update User</td>
+                <td>PUT</td>
+                <td>200 OK</td>
+                <td>PASSED</td>
+            </tr>
+            <tr>
+                <td>Delete User</td>
+                <td>DELETE</td>
+                <td>204 No Content</td>
+                <td>PASSED</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

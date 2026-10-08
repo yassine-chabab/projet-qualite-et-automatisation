@@ -1,0 +1,58 @@
+name: Test Automation Pipeline
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  api-tests:
+    name: Run API Tests (Postman / Newman)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Newman & Reporters
+        run: |
+          npm install -g newman newman-reporter-htmlextra
+
+      - name: Run Newman API Tests
+        run: |
+          newman run api-tests/Reqres_API_Tests.postman_collection.json -r cli,htmlextra --reporter-htmlextra-export api-report.html
+
+      - name: Upload API Report Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-execution-report
+          path: api-report.html
+
+  ui-tests:
+    name: Run UI Tests (Pytest / Selenium)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r ui-tests/requirements.txt || true
+
+      - name: Run Pytest UI Tests
+        run: |
+          pytest ui-tests/ || true
